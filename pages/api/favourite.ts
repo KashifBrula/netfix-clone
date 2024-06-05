@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     id: movieId,
                 }
             });
-            console.log(existingMovie)
+
             if (!existingMovie) {
                 throw new Error("Invalid ID");
             }
@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 }
             });
-            console.log(user)
+
             return res.status(200).json(user);
         }
 
@@ -47,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             });
 
             if(!existingMovie){
-                throw new Error("Invalid Id");
+                throw new Error("Invalid ID");
             }
 
             const updateFavourite = without(currentUser?.favouriteIds, movieId);
@@ -65,9 +65,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         return res.status(405).end();
-    } catch (error) {
+    } catch (error){
         console.log(error);
         return res.status(405).end();
     }
-
 }
